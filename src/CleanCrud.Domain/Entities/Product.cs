@@ -9,9 +9,9 @@ namespace CleanCrud.Domain.Entities
     public class Product
     {
         public string Name { get; set; }
-        public string ProduceDate { get; set; }
+        public DateTime ProduceDate { get; set; }
         public string ManufacturePhone { get; set; }
-        public DateTime ManufactureEmail { get; set; }
+        public string ManufactureEmail { get; set; }
         public bool IsAvailable { get; set; }
     }
 }
