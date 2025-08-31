@@ -11,7 +11,7 @@ namespace CleanCrud.Domain.Entities
         public string Name { get; set; }
         public string ProduceDate { get; set; }
         public string ManufacturePhone { get; set; }
-        public string ManufactureEmail { get; set; }
+        public DateTime ManufactureEmail { get; set; }
         public bool IsAvailable { get; set; }
     }
 }
