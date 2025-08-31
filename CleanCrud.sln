@@ -3,10 +3,42 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCrud.Api", "src\CleanCrud.Api\CleanCrud.Api.csproj", "{855278F3-605F-FFFC-0A91-AA941A6DC6DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCrud.Application", "src\CleanCrud.Application\CleanCrud.Application.csproj", "{E4981A09-BE4B-56DA-5046-6E968551999E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCrud.Domain", "src\CleanCrud.Domain\CleanCrud.Domain.csproj", "{080F3B22-131F-1644-61D8-128C35C8E83D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCrud.Infrastructure", "src\CleanCrud.Infrastructure\CleanCrud.Infrastructure.csproj", "{24FD7DBB-8C57-B529-947E-8BE566E3091D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanCrud.Presistence", "src\CleanCrud.Presistence\CleanCrud.Presistence.csproj", "{A825CE9B-00EC-7FA0-D92E-303E6DCD2FFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{855278F3-605F-FFFC-0A91-AA941A6DC6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855278F3-605F-FFFC-0A91-AA941A6DC6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855278F3-605F-FFFC-0A91-AA941A6DC6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855278F3-605F-FFFC-0A91-AA941A6DC6DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4981A09-BE4B-56DA-5046-6E968551999E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4981A09-BE4B-56DA-5046-6E968551999E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4981A09-BE4B-56DA-5046-6E968551999E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4981A09-BE4B-56DA-5046-6E968551999E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080F3B22-131F-1644-61D8-128C35C8E83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080F3B22-131F-1644-61D8-128C35C8E83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080F3B22-131F-1644-61D8-128C35C8E83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080F3B22-131F-1644-61D8-128C35C8E83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24FD7DBB-8C57-B529-947E-8BE566E3091D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24FD7DBB-8C57-B529-947E-8BE566E3091D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24FD7DBB-8C57-B529-947E-8BE566E3091D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24FD7DBB-8C57-B529-947E-8BE566E3091D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A825CE9B-00EC-7FA0-D92E-303E6DCD2FFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A825CE9B-00EC-7FA0-D92E-303E6DCD2FFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A825CE9B-00EC-7FA0-D92E-303E6DCD2FFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A825CE9B-00EC-7FA0-D92E-303E6DCD2FFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
