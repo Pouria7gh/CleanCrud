@@ -16,6 +16,7 @@ namespace CleanCrud.Presistence.DbContexts
         }
 
         DbSet<Product> Products { get; set; }
+        DbSet<Manufacturer> Manufacturers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -23,17 +24,24 @@ namespace CleanCrud.Presistence.DbContexts
 
             builder.Entity<Product>(entity =>
             {
-                entity.HasKey(p => new { p.ManufactureEmail, p.ProduceDate });
+                entity.HasKey(p => p.Id);
+
+                entity.Property(p => p.Manufacturer).IsRequired();
 
                 entity.Property(p => p.Name).IsRequired().HasMaxLength(100);
 
                 entity.Property(p => p.ProduceDate).IsRequired();
 
-                entity.Property(p => p.ManufacturePhone).IsRequired().HasMaxLength(20);
+                entity.Property(p => p.Quantity).IsRequired().HasDefaultValue(0);
+            });
 
-                entity.Property(p => p.ManufactureEmail).IsRequired().HasMaxLength(100);
+            builder.Entity<Manufacturer>(entity =>
+            {
+                entity.HasKey(m => m.Id);
 
-                entity.Property(p => p.IsAvailable).IsRequired().HasDefaultValue(true);
+                entity.Property(m => m.Name).IsRequired().HasMaxLength(100);
+
+                entity.Property(m => m.Email).IsRequired().HasMaxLength(150);
             });
         }
     }
