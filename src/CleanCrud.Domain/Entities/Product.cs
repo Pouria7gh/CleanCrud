@@ -9,40 +9,34 @@ namespace CleanCrud.Domain.Entities
     public class Product
     {
         public Guid Id { get; private set; }
-        public Manufacture Manufacturer { get; private set; }
+        public Manufacturer Manufacturer { get; private set; }
         public string Name { get; private set; }
         public DateTime ProduceDate { get; private set; }
-        public bool IsAvailable { get; private set; }
-        public Guid CreatedById { get; private set; }
+        public bool IsAvailable => Quantity > 0;
         public int Quantity { get; private set; }
 
         private Product() { }
 
         private Product(
-            Manufacture manufacture,
+            Manufacturer manufacture,
             string name,
             DateTime produceDate,
-            Guid createdById,
             int quantity)
         {
             Id = Guid.NewGuid();
             Manufacturer = manufacture;
             Name = name;
             ProduceDate = produceDate;
-            IsAvailable = quantity > 0;
-            CreatedById = createdById;
             Quantity = quantity;
         }
 
-        public static Product Create(string name, DateTime produceDate, Guid createdById, Manufacture manufacturer, int quantity = 0)
+        public static Product Create(string name, DateTime produceDate, Manufacturer manufacturer, int quantity = 0)
         {
             if (manufacturer == null) throw new ArgumentNullException(nameof(manufacturer));
 
             if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
 
-            if (produceDate == default) throw new ArgumentException("Produce date is required.", nameof(produceDate));
-
-            if (createdById == Guid.Empty) throw new ArgumentException("CreatedById is required.", nameof(createdById));
+            if (produceDate == default) throw new ArgumentNullException(nameof(produceDate));
 
             if (quantity < 0 ) throw new ArgumentOutOfRangeException(nameof(quantity));
 
@@ -50,7 +44,6 @@ namespace CleanCrud.Domain.Entities
                 manufacturer,
                 name.Trim(),
                 produceDate,
-                createdById,
                 quantity
             );
         }
@@ -61,7 +54,7 @@ namespace CleanCrud.Domain.Entities
             Name = name.Trim();
         }
 
-        public void SetManufacturer(Manufacture manufacturer)
+        public void SetManufacturer(Manufacturer manufacturer)
         {
             if (manufacturer == null) throw new ArgumentNullException(nameof(Manufacturer));
             Manufacturer = manufacturer;
@@ -69,7 +62,7 @@ namespace CleanCrud.Domain.Entities
 
         public void SetProduceDate(DateTime produceDate)
         {
-            if (produceDate == default) throw new ArgumentException("Produce date is required.", nameof(produceDate));
+            if (produceDate == default) throw new ArgumentNullException(nameof(produceDate));
             ProduceDate = produceDate;
         }
 
@@ -77,7 +70,6 @@ namespace CleanCrud.Domain.Entities
         {
             if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount));
             Quantity += amount;
-            IsAvailable = true;
         }
 
         public void DecreaseStock(int amount)
@@ -85,7 +77,6 @@ namespace CleanCrud.Domain.Entities
             if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount));
             if (Quantity - amount < 0) throw new InvalidOperationException("Insufficient stock.");
             Quantity -= amount;
-            IsAvailable = Quantity > 0;
         }
     }
 }

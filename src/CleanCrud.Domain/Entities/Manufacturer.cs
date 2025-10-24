@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CleanCrud.Domain.Entities
 {
-    public class Manufacture
+    public class Manufacturer
     {
         public int Id { get; set; }
         public string Email { get; set; }
