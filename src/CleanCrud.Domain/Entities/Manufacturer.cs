@@ -8,11 +8,41 @@ namespace CleanCrud.Domain.Entities
 {
     public class Manufacturer
     {
-        public int Id { get; set; }
-        public string Email { get; set; }
-        public string Phone { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string UserName { get; set; }
+        public Guid Id { get; private set; }
+        public string Email { get; private set; }
+        public string Name { get; private set; }
+
+        private Manufacturer(string name, string email)
+        {
+            Id = new Guid();
+            Name = name;
+            Email = email;
+        }
+
+        public static Manufacturer Create(string name, string email)
+        {
+            if (string.IsNullOrEmpty(name)) throw new ArgumentNullException(nameof(name));
+
+            if (string.IsNullOrEmpty(email)) throw new ArgumentNullException(nameof(email));
+
+            return new Manufacturer(
+                name.Trim(),
+                email.Trim()
+            );
+        }
+
+        public void SetName(string name)
+        {
+            if (string.IsNullOrEmpty(name))  throw new ArgumentNullException(nameof(name));
+
+            Name = name;
+        }
+
+        public void SetEmail(string email)
+        {
+            if (string.IsNullOrEmpty(email)) throw new ArgumentNullException(nameof(email));
+
+            Email = email;
+        }
     }
 }
