@@ -12,6 +12,8 @@ namespace CleanCrud.Domain.Entities
         public string Email { get; private set; }
         public string Name { get; private set; }
 
+        private Manufacturer() {   }
+
         private Manufacturer(string name, string email)
         {
             Id = new Guid();
