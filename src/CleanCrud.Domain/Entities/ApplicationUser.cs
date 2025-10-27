@@ -9,6 +9,6 @@ namespace CleanCrud.Domain.Entities
 {
     public class ApplicationUser : IdentityUser
     {
-        public string FullName { get; private set; }
+        public string FullName { get; set; }
     }
 }
