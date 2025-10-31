@@ -1,5 +1,10 @@
+using CleanCrud.Application.Auth.Commands;
+using CleanCrud.Application.Common;
+using CleanCrud.Application.Common.Behaviors;
 using CleanCrud.Domain.Entities;
 using CleanCrud.Presistence.DbContexts;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +37,12 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
+
+builder.Services.AddMediatR(config =>
+{
+    config.RegisterServicesFromAssemblies(typeof(RegisterCommandHandler).Assembly);
+    config.AddOpenBehavior(typeof(ValidationBehavior<,>));
+});
 
 var app = builder.Build();
 
