@@ -38,6 +38,8 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.AddValidatorsFromAssembly(typeof(RegisterCommandValidator).Assembly);
+
 builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssemblies(typeof(RegisterCommandHandler).Assembly);
