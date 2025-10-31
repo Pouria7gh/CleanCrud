@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CleanCrud.Presistence.DbContexts
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -25,8 +25,6 @@ namespace CleanCrud.Presistence.DbContexts
             builder.Entity<Product>(entity =>
             {
                 entity.HasKey(p => p.Id);
-
-                entity.Property(p => p.Manufacturer).IsRequired();
 
                 entity.Property(p => p.Name).IsRequired().HasMaxLength(100);
 

@@ -1,4 +1,5 @@
-﻿using CleanCrud.Application.Auth.Commands;
+﻿using CleanCrud.Api.DTOs.Auth;
+using CleanCrud.Application.Auth.Commands;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,15 @@ namespace CleanCrud.Api.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register()
+        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            var result = await _mediator.Send(new RegisterCommand() { FullName = "admin", Password = "123", Email = "123" });
+            var result = await _mediator.Send(new RegisterCommand()
+            { 
+                FullName = dto.FullName,
+                Password = dto.Password,
+                Email = dto.Email, 
+            });
+
             return Ok(result);
         }
     }
