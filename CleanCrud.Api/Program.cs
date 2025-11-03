@@ -1,15 +1,11 @@
 using CleanCrud.Api.Exceptions;
 using CleanCrud.Application.Auth.Commands;
-using CleanCrud.Application.Common;
 using CleanCrud.Application.Common.Behaviors;
 using CleanCrud.Domain.Entities;
 using CleanCrud.Presistence.DbContexts;
 using FluentValidation;
-using MediatR;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
+using CleanCrud.Presistence;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +26,7 @@ builder.Services.AddCors(options =>
     });
 });
 
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")) );
+builder.Services.AddPresistence(builder.Configuration);
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {

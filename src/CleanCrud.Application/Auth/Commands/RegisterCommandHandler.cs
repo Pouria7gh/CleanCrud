@@ -1,4 +1,5 @@
 ﻿using CleanCrud.Application.Common;
+using CleanCrud.Application.Repositories;
 using CleanCrud.Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -12,38 +13,24 @@ namespace CleanCrud.Application.Auth.Commands
 {
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, string>
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        public RegisterCommandHandler(UserManager<ApplicationUser> userManager)
+        private readonly IUserRepository _userRepository;
+        public RegisterCommandHandler(IUserRepository userRepository)
         {
-            _userManager = userManager;
+            _userRepository = userRepository;
         }
 
         public async Task<string> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var userExists = await _userManager.FindByEmailAsync(request.Email);
+            var userExists = await _userRepository.GetUserByEmailAsync(request.Email);
 
             if (userExists != null)
             {
                 return "user already exists";
             }
 
-            var user = new ApplicationUser()
-            {
-                FullName = request.FullName,
-                Email = request.Email,
-                UserName = request.Email,
-            };
+            var result = await _userRepository.RegisterAsync(request.FullName, request.Email, request.Password, request.Username);
 
-            var result = await _userManager.CreateAsync(user, request.Password);
-
-            if (result.Succeeded)
-            {
-                return "user created";
-            }
-            else
-            {
-                return "something faild";
-            }
+            return result;
         }
     }
 }
