@@ -12,8 +12,18 @@ namespace CleanCrud.Application.Auth.Commands
         public RegisterCommandValidator() 
         {
             RuleFor(x => x.FullName).NotEmpty().MaximumLength(150);
+
             RuleFor(x => x.Email).NotEmpty().MaximumLength(150);
-            RuleFor(x => x.Password).NotEmpty().MinimumLength(6);
+
+            RuleFor(x => x.Password)
+                .NotEmpty().WithMessage("Password is required.")
+                .MinimumLength(8).WithMessage("Password must be at least 8 characters long.")
+                .Must(p => !string.IsNullOrEmpty(p) && !p.Any(char.IsWhiteSpace)).WithMessage("Password must not contain whitespace.")
+                .Matches("[A-Z]").WithMessage("Password must contain at least one uppercase letter.")
+                .Matches("[0-9]").WithMessage("Password must contain at least one number.")
+                .Matches("[!@#$%^&*()_+\\-={}\\[\\]:;\"'<>,.?/|~`]").WithMessage("Password must contain at least one special character.");
+
+            RuleFor(x => x.UserName).NotEmpty().MinimumLength(150);
         }
     }
 }
