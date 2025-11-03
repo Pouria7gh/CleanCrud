@@ -23,7 +23,7 @@ namespace CleanCrud.Application.Auth.Commands
                 .Matches("[0-9]").WithMessage("Password must contain at least one number.")
                 .Matches("[!@#$%^&*()_+\\-={}\\[\\]:;\"'<>,.?/|~`]").WithMessage("Password must contain at least one special character.");
 
-            RuleFor(x => x.UserName).NotEmpty().MinimumLength(150);
+            RuleFor(x => x.Username).NotEmpty().MaximumLength(150);
         }
     }
 }

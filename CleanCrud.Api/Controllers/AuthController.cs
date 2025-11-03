@@ -24,7 +24,7 @@ namespace CleanCrud.Api.Controllers
                 FullName = dto.FullName,
                 Password = dto.Password,
                 Email = dto.Email,
-                UserName = dto.Username,
+                Username = dto.Username,
             });
 
             return Ok(result);
