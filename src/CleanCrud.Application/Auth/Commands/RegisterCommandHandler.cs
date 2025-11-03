@@ -28,9 +28,20 @@ namespace CleanCrud.Application.Auth.Commands
                 return "user already exists";
             }
 
-            var result = await _userRepository.RegisterAsync(request.FullName, request.Email, request.Password, request.Username);
+            var user = new ApplicationUser()
+            {
+                FullName = request.FullName,
+                Email = request.Email,
+                UserName = request.Username,
+            };
 
-            return result;
+            var result = await _userRepository.RegisterAsync(user, request.Password);
+
+            // refactor this later
+            if (result.Succeeded)
+                return "Registration was successful";
+            else
+                return "Registeration was not successful";
         }
     }
 }

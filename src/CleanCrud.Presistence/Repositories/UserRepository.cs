@@ -1,5 +1,6 @@
 ﻿using CleanCrud.Application.Repositories;
 using CleanCrud.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,20 @@ namespace CleanCrud.Presistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
-        public Task<ApplicationUser> GetUserByEmailAsync(string email)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public UserRepository(UserManager<ApplicationUser> userManager)
         {
-            throw new NotImplementedException();
+            _userManager = userManager;
         }
 
-        public Task<string> RegisterAsync(string fullName, string email, string password, string username)
+        public async Task<ApplicationUser?> GetUserByEmailAsync(string email)
         {
-            throw new NotImplementedException();
+            return await _userManager.FindByEmailAsync(email);
+        }
+
+        public async Task<IdentityResult> RegisterAsync(ApplicationUser user, string password)
+        {
+            return await _userManager.CreateAsync(user, password);
         }
     }
 }

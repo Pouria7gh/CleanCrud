@@ -1,4 +1,5 @@
 ﻿using CleanCrud.Domain.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace CleanCrud.Application.Repositories
 {
     public interface IUserRepository
     {
-        public Task<string> RegisterAsync(string fullName, string email, string password, string username);
+        public Task<IdentityResult> RegisterAsync(ApplicationUser user, string password);
 
         public Task<ApplicationUser> GetUserByEmailAsync(string email);
     }
