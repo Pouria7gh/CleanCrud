@@ -1,3 +1,4 @@
+using CleanCrud.Api.Exceptions;
 using CleanCrud.Application.Auth.Commands;
 using CleanCrud.Application.Common;
 using CleanCrud.Application.Common.Behaviors;
@@ -5,8 +6,10 @@ using CleanCrud.Domain.Entities;
 using CleanCrud.Presistence.DbContexts;
 using FluentValidation;
 using MediatR;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +41,10 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
-builder.Services.AddValidatorsFromAssembly(typeof(RegisterCommandValidator).Assembly);
+builder.Services.AddValidatorsFromAssembly(typeof(RegisterCommand).Assembly);
+
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
 
 builder.Services.AddMediatR(config =>
 {
@@ -54,6 +60,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseExceptionHandler();
 
 app.UseHttpsRedirection();
 
