@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CleanCrud.Application\CleanCrud.Application.csproj" />
     <ProjectReference Include="..\CleanCrud.Domain\CleanCrud.Domain.csproj" />
   </ItemGroup>
 

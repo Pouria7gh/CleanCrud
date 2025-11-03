@@ -1,4 +1,6 @@
-﻿using CleanCrud.Presistence.DbContexts;
+﻿using CleanCrud.Application.Repositories;
+using CleanCrud.Presistence.DbContexts;
+using CleanCrud.Presistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,8 @@ namespace CleanCrud.Presistence
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped<IUserRepository, UserRepository>();
 
             return services;
         }
