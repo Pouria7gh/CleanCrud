@@ -32,7 +32,6 @@ namespace CleanCrud.Application.Auth.Commands
             {
                 FullName = request.FullName,
                 Email = request.Email,
-                UserName = request.Username,
             };
 
             var result = await _userRepository.RegisterAsync(user, request.Password);
