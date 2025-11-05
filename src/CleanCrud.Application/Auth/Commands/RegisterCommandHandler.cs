@@ -1,6 +1,7 @@
 ﻿using CleanCrud.Application.Common;
 using CleanCrud.Application.Repositories;
 using CleanCrud.Domain.Entities;
+using CleanCrud.Domain.Entities.User;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using System;
