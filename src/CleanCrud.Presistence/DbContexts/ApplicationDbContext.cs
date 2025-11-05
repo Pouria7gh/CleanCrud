@@ -1,4 +1,5 @@
 ﻿using CleanCrud.Domain.Entities;
+using CleanCrud.Domain.Entities.User;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;

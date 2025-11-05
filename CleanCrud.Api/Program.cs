@@ -1,11 +1,11 @@
 using CleanCrud.Api.Exceptions;
 using CleanCrud.Application.Auth.Commands;
 using CleanCrud.Application.Common.Behaviors;
-using CleanCrud.Domain.Entities;
 using CleanCrud.Presistence.DbContexts;
 using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using CleanCrud.Presistence;
+using CleanCrud.Domain.Entities.User;
 
 var builder = WebApplication.CreateBuilder(args);
 

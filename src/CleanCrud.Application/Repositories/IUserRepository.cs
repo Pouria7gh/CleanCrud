@@ -1,4 +1,4 @@
-﻿using CleanCrud.Domain.Entities;
+﻿using CleanCrud.Domain.Entities.User;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
