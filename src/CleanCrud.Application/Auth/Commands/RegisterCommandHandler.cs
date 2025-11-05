@@ -22,17 +22,24 @@ namespace CleanCrud.Application.Auth.Commands
 
         public async Task<string> Handle(RegisterCommand request, CancellationToken cancellationToken)
         {
-            var userExists = await _userRepository.GetUserByEmailAsync(request.Email);
+            var userByEmail = await _userRepository.GetUserByEmailAsync(request.Email);
 
-            if (userExists != null)
+            if (userByEmail != null)
             {
                 return "user already exists";
             }
 
-            var user = new ApplicationUser()
+            var userByUserName = await _userRepository.GetUserByUserNameAsync(request.UserName);
+
+            if (userByUserName != null)
             {
-                FullName = request.FullName,
+                return "username exists";
+            }
+
+            var user = new ApplicationUser(request.FullName)
+            {
                 Email = request.Email,
+                UserName = request.UserName,
             };
 
             var result = await _userRepository.RegisterAsync(user, request.Password);

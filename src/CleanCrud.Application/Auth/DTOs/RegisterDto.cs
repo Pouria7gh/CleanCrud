@@ -13,6 +13,6 @@ namespace CleanCrud.Api.DTOs.Auth
         [MinLength(8)]
         public string Password { get; set; }
         [Required]
-        public string Username { get; set; }
+        public string UserName { get; set; }
     }
 }
