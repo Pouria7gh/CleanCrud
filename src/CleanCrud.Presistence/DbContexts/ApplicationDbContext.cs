@@ -18,6 +18,7 @@ namespace CleanCrud.Presistence.DbContexts
 
         DbSet<Product> Products { get; set; }
         DbSet<Manufacturer> Manufacturers { get; set; }
+        DbSet<RefreshToken> RefreshTokens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,6 +42,26 @@ namespace CleanCrud.Presistence.DbContexts
                 entity.Property(m => m.Name).IsRequired().HasMaxLength(100);
 
                 entity.Property(m => m.Email).IsRequired().HasMaxLength(150);
+            });
+
+            builder.Entity<RefreshToken>(entity =>
+            {
+                entity.HasKey(r => r.Id);
+
+                entity.Property(r => r.Token).IsRequired()
+                    .HasMaxLength(200);
+
+                entity.HasOne(r => r.User)
+                    .WithMany(u => u.RefreshTokens)
+                    .HasForeignKey(r => r.UserId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                entity.Property(r => r.CreatedByIp).IsRequired().HasMaxLength(45);
+
+                entity.Property(r => r.RevokedByIp).HasMaxLength(45);
+
+                entity.Property(r => r.ReplacedByToken).HasMaxLength(200);
             });
         }
     }
