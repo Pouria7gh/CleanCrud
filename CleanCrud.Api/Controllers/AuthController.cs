@@ -17,7 +17,7 @@ namespace CleanCrud.Api.Controllers
         }
 
         [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] RegisterDto dto)
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto dto)
         {
             var result = await _mediator.Send(new RegisterCommand()
             { 
@@ -27,7 +27,12 @@ namespace CleanCrud.Api.Controllers
                 UserName = dto.UserName
             });
 
-            return Ok(result);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok(result.Data);
         }
     }
 }

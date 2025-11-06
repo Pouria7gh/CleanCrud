@@ -12,8 +12,12 @@ namespace CleanCrud.Application.Repositories
     {
         public Task<IdentityResult> RegisterAsync(ApplicationUser user, string password);
 
-        public Task<ApplicationUser> GetUserByEmailAsync(string email);
+        public Task<ApplicationUser?> GetUserByEmailAsync(string email);
 
-        public Task<ApplicationUser> GetUserByUserNameAsync(string userName);
+        public Task<ApplicationUser?> GetUserByUserNameAsync(string userName);
+
+        public Task<ApplicationUser?> GetUserByIdAsync(string id);
+
+        Task<IList<string>> GetUserRolesAsync(ApplicationUser user);
     }
 }

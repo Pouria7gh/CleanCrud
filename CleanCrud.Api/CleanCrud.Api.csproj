@@ -12,11 +12,14 @@
     <PackageReference Include="MediatR" Version="13.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="9.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.6" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\src\CleanCrud.Application\CleanCrud.Application.csproj" />
+    <ProjectReference Include="..\src\CleanCrud.Infrastructure\CleanCrud.Infrastructure.csproj" />
     <ProjectReference Include="..\src\CleanCrud.Presistence\CleanCrud.Presistence.csproj" />
   </ItemGroup>
 

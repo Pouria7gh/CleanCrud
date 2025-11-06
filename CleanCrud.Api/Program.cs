@@ -6,6 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using CleanCrud.Presistence;
 using CleanCrud.Domain.Entities.User;
+using CleanCrud.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddPresistence(builder.Configuration);
+builder.Services.AddInfrastructure(builder.Configuration);
 
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {

@@ -2,7 +2,7 @@
 
 namespace CleanCrud.Api.DTOs.Auth
 {
-    public class RegisterDto
+    public class RegisterRequestDto
     {
         [Required]
         public string FullName { get; set; }

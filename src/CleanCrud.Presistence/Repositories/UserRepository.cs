@@ -31,5 +31,15 @@ namespace CleanCrud.Presistence.Repositories
         {
             return await _userManager.FindByNameAsync(userName);
         }
+
+        public async Task<ApplicationUser?> GetUserByIdAsync(string id)
+        {
+            return await _userManager.FindByIdAsync(id);
+        }
+
+        public async Task<IList<string>> GetUserRolesAsync(ApplicationUser user)
+        {
+            return await _userManager.GetRolesAsync(user);
+        }
     }
 }

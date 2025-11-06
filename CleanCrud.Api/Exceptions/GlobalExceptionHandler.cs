@@ -19,12 +19,7 @@ namespace CleanCrud.Api.Exceptions
                 problemDetails.Status = (int)HttpStatusCode.BadRequest;
                 httpContext.Response.StatusCode = (int)HttpStatusCode.BadRequest;
 
-                List<string> errors = new List<string>();
-                foreach(var error in validationException.Errors)
-                {
-                    errors.Add(error.ErrorMessage);
-                }
-                problemDetails.Extensions.Add("errors", errors);
+                problemDetails.Extensions["errors"] = validationException.Errors.Select(x => new {Field = x.PropertyName, Message = x.ErrorMessage });
             }
 
 

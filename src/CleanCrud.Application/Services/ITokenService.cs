@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CleanCrud.Domain.Entities.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace CleanCrud.Application.Services
 {
     public interface ITokenService
     {
-        public Task<string> GetToken();
+        public Task<string?> GenerateToken(ApplicationUser user);
     }
 }
